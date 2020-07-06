@@ -1,10 +1,16 @@
-import random,time,pickle,json
+import random,time,pickle,json,os
 
 w=["cat","dog","fox","monkey","mouse","panda","frog","snake","wolf"]
 
 while True:
-   print("1.타자게임 2.문제불러오기  3.문제저장하기  4.새문제 등록  4.등수 5.종료하기 ")
-   menu = input("메뉴를 선택하세요\n")
+   print('''
+   1.타자게임 
+   2.문제불러오기  
+   3.문제저장하기  
+   4.문제 등록 수정 삭제  
+   4.등수 
+   5.종료하기 ''')
+   menu = input("  메뉴를 선택하세요>>>")
    if menu=='1':
         n=1
         q=random.choice(w)
