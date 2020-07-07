@@ -2,25 +2,7 @@ import re
 custlist=[]
 page = -1
 
-def insertData():        
-    pass
-  
-def curSearch():
-    pass
-
-def preSearch():
-    pass
-        
-def nextSearch():
-    pass
-
-def deleteData():
-    pass
-
-def updateData(): 
-    pass
-
-def exe(choice):
+def exe(choice): 
         if choice=='I':
             insertData()
         
@@ -41,6 +23,26 @@ def exe(choice):
         
         elif choice=='Q':
             quit()
+            
+def insertData():        
+    pass
+  
+def curSearch():
+    pass
+
+def preSearch():
+    pass
+        
+def nextSearch():
+    pass
+
+def deleteData():
+    pass
+
+def updateData(): 
+    pass
+
+
               
 while True:
     choice=input('''
