@@ -58,6 +58,7 @@ while True:
 
         print(customer)
         print(custlist)
+        print(page)
 
     elif choice=="C":
         print("현재 고객 정보 조회")
@@ -109,6 +110,7 @@ while True:
         for i in custlist:
             print(i['name'],':',i['email'],end="  ")
         print()
+        page = len(custlist)-1
 
     elif choice=="U": 
         print("고객 정보 수정")
