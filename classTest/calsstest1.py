@@ -54,3 +54,11 @@ print(id(FourCal.mode))
 print(id(a.mode))
 print(id(b.mode))
 print(id(c.mode))
+
+import sys
+import testcode
+sys.path.append("d:\\code\\pythoncode-1\\func")
+print(sys.path)
+# python.linting.enabled 옵션 해제
+testcode.vartest()
+
