@@ -6,8 +6,6 @@
 # print(type(a))
 
 class FourCal:
-    mode = 1
-    
     def __init__(self,first=1,second=4):
         self.first = first
         self.second = second
