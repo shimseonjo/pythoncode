@@ -7,4 +7,4 @@ def vartest():
 
 vartest()
 
-print(a)
+print(__name__ )

@@ -23,7 +23,6 @@ class FourCal:
 a= FourCal(2)
 b= FourCal(4,7)
 c= FourCal()
-print(a.mode)
 
 # print(FourCal.mode)
 # print(a.mode)
