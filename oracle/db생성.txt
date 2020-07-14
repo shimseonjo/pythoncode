@@ -1,0 +1,24 @@
+books 테이블 
+create table if not exists books(
+	           book_id  integer
+		 NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                        title text,
+                        published_date text,
+                        publisher text,
+                        pages integer,
+                        recommend integer)DEFAULT CHARSET=utf8;
+
+
+CREATE SEQUENCE book_seq START WITH 1 INCREMENT BY 1 ;
+
+create table  books(
+                        book_id  number not null,
+                        title VARCHAR2(50),
+                        published_date VARCHAR2(50),
+                        publisher VARCHAR2(50),
+                        pages number,
+                        recommend number,
+                        CONSTRAINT pk_book PRIMARY KEY(book_id));
+
+
+insert into books values(book_seq.NEXTVAL,'데이터분석실무','2020-07-13','위키북스',300,10)

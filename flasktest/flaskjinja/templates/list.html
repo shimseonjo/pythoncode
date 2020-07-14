@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}
+파일 목록
+{% endblock %}
+
+{% block content %}
+    <br>
+    <h1 class="blockquote text-center">다운로드 파일 목록</h1>
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">download</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for file in files %}
+              <tr>
+                <th scope="row">{{loop.index}}</th>
+                <td>Mark</td>
+                <td>{{file}}</td>
+                <td><a href="/files/{{file}}">파일다운로드</a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+    </div>
+{% endblock %}
+
+{% block footer %} 
+
+{% endblock %}
