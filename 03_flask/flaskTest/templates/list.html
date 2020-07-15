@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<head>    <meta charset="UTF-8">    
+    <title>flask list</title>
+</head>
+<body>
+품목 리스트 <br>
+<ul>
+{% for key, value in ulist.items() %}
+   <li>key : {{ key }}, value : {{ value }} </li>
+{% endfor %}
+</ul>
+</body>
+</html>

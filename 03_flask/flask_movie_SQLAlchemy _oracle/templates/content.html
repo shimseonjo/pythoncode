@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}영화 내용{% endblock %}
+{% block head %}
+
+<script>
+  function movieword(code){
+    add="/movieword/"+code
+    console.log(add)
+    $.ajax({
+     type : "GET",
+     url : add,
+     dataType : "text",
+     success : function(result){
+      $("#img_src").html('<img src="/static/img/img'+ code +'.png">');
+     }
+   });
+  }
+
+  function moviechart(code){
+    add="/moviechart/"+code
+    console.log(add)
+    $.ajax({
+     type : "GET",
+     url : add,
+     dataType : "text",
+     success : function(result){
+      $("#img_src").html(result);
+      // $("#img_src").html('<img src="/static/img/chart'+ code +'.png">');
+     }
+   });
+  }
+</script>
+
+{% endblock %}
+
+{% block content %}
+
+    <h1 align="center">영화 상세 정보</h1>
+    <div class="container">
+      <br>
+        <table class="table table-hover ">
+            <thead>
+              <tr>
+                <th scope="col" style="text-align:center" colspan="2">영 화 내 용</th>       
+              </tr>
+            </thead>
+            
+            <tbody>
+              {% for item in movielist: %}
+              <tr>
+                <td style="text-align: center;vertical-align: middle; ">
+                  <a href="/content/{{item['code']}}">
+                    <img src="{{item['thumb']}}">
+                  </a>
+                </td>
+                <td>제목 : {{item['title']}} <br>
+                    상영시간 : {{item['time']}} <br>
+                    개봉일자 : {{item['sdate']}} <br>
+                    상영등급 : {{item['grade']}} <br>
+                    총관람객 : {{item['audience']}}<br>
+                    <hr>
+                    {{item['summary']}}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <button onclick="movieword({{item['code']}});">워드클라우드</button>
+                  <button onclick="moviechart({{item['code']}});">매출차트</button>
+                  <br>
+                  <span id='img_src'></span>  
+                </td>  
+              </tr>
+              {% endfor %}
+              </tbody>
+          </table>
+    </div>
+
+{% endblock %}
