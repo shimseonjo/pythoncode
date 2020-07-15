@@ -1,4 +1,4 @@
-from flask import Flask,request,render_template,redirect,url_for,jsonify
+from flask import Flask,render_template,request,redirect,url_for,jsonify
 import pymysql,os
 
 app=Flask(__name__)
@@ -61,20 +61,24 @@ def list():
             connection.close()
     return render_template('list.html',list=result)      
 
-
-
-@app.route('/form')
-def formTest():
-    return render_template('form.html')
-
-@app.route('/formresult',methods=['POST'])  
-def formresult():
-    username = request.form['username']
-    userpass = request.form.get('userpass')
-    joblist=request.form.getlist('job')
-    return render_template('formresult.html',username=username,userpass=userpass,joblist=joblist) 
-
-
+@app.route('/content/<userid>')
+def content(userid):
+    connection=pymysql.connect(host='localhost',
+                            user='root',
+                            password='qwer1234',
+                            db='test',
+                            charset='utf8mb4',
+                            cursorclass=pymysql.cursors.DictCursor)
+       
+    try:
+        with connection.cursor() as cursor:
+            sql="select * from users where userid = %s;"
+            cursor.execute(sql,userid)
+            result=cursor.fetchone()
+            print(result)
+    finally:
+        connection.close()
+    return render_template('content.html',list=result)
 
 @app.route('/updateform/<userid>',methods=['GET'])
 def updateformget(userid):
@@ -127,30 +131,12 @@ def updateformpost():
                 usertel=%s
                 where userid=%s;
                 '''
-            cursor.execute(sql,(userpw,username,userage,usermail,useradd,usergender,usertel,userid))
+            data=(userpw,username,userage,usermail,useradd,usergender,usertel,userid)
+            cursor.execute(sql,data)
             connection.commit()
     finally:
         connection.close()                            
     return redirect('/list')    
-
-@app.route('/content/<userid>')
-def content(userid):
-    connection=pymysql.connect(host='localhost',
-                            user='root',
-                            password='qwer1234',
-                            db='test',
-                            charset='utf8mb4',
-                            cursorclass=pymysql.cursors.DictCursor)
-       
-    try:
-        with connection.cursor() as cursor:
-            sql="select * from users where userid = %s;"
-            cursor.execute(sql,userid)
-            result=cursor.fetchone()
-            print(result)
-    finally:
-        connection.close()
-    return render_template('content.html',list=result)
 
 @app.route('/deleteform/<userid>')
 def deleteformget(userid):
@@ -191,16 +177,19 @@ def ajaxlistget():
 
 @app.route('/ajaxlist',methods=['POST'])
 def ajaxlistpost():
-    userid = request.form.get('userid')
+    
     connection=pymysql.connect(host='localhost',
                             user='root',
                             password='qwer1234',
                             db='test',
                             charset='utf8mb4',
                             cursorclass=pymysql.cursors.DictCursor)
+
+    userid = request.form.get('userid')
+
     try:
         with connection.cursor() as cursor:
-                sql="select * from users where userid like %s;"
+                sql="select * from users where userid like %s"
                 userid='%'+userid+'%'
                 cursor.execute(sql,userid)
                 result=cursor.fetchall()
