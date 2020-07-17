@@ -1,11 +1,8 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import requests,time
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
-driver = webdriver.Remote("http://selenium:4444/wd/hub", DesiredCapabilities.CHROME)
-
-#driver = webdriver.Chrome('./crawling/data/chromedriver')
+driver = webdriver.Chrome('./pythoncode/04.crawling/data/chromedriver')
 driver.get('https://www.istarbucks.co.kr/store/store_map.do')
 time.sleep(20)
 
